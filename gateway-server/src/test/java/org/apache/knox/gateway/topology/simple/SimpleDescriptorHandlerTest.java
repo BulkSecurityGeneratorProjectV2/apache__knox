@@ -207,7 +207,7 @@ public class SimpleDescriptorHandlerTest {
         final String clusterName = "dummy";
 
         // Create a properties file to be the source of service discovery details for this test
-        final File discoveryConfig = File.createTempFile(getClass().getName() + "_discovery-config", ".properties");
+        final File discoveryConfig = Files.createTempFile(getClass().getName() + "_discovery-config", ".properties").toFile();
 
         final String address = discoveryConfig.getAbsolutePath();
 
@@ -406,7 +406,7 @@ public class SimpleDescriptorHandlerTest {
         serviceDiscoverySourceProps.setProperty(CLUSTER_NAME + ".RESOURCEMANAGER.url", DEFAULT_VALID_SERVICE_URL);
         serviceDiscoverySourceProps.setProperty(CLUSTER_NAME + ".AMBARIUI.url",        DEFAULT_VALID_SERVICE_URL);
 
-        File serviceDiscoverySource = File.createTempFile("service-discovery", ".properties");
+        File serviceDiscoverySource = Files.createTempFile("service-discovery", ".properties").toFile();
         try (OutputStream outputStream = Files.newOutputStream(serviceDiscoverySource.toPath())) {
           serviceDiscoverySourceProps.store(outputStream, "Test Service Discovery Source");
         }
@@ -582,7 +582,7 @@ public class SimpleDescriptorHandlerTest {
         final String clusterName = "dummy";
 
         // Create a properties file to be the source of service discovery details for this test
-        final File discoveryConfig = File.createTempFile(getClass().getName() + "_discovery-config", ".properties");
+        final File discoveryConfig = Files.createTempFile(getClass().getName() + "_discovery-config", ".properties").toFile();
 
         final String address = discoveryConfig.getAbsolutePath();
 
@@ -823,7 +823,7 @@ public class SimpleDescriptorHandlerTest {
 
     @Test
     public void shouldAllowKnoxServiceWithoutUrlsAndParams() throws Exception {
-      File providerConfig =  File.createTempFile("testKnoxProvider", ".xml");
+      File providerConfig =  Files.createTempFile("testKnoxProvider", ".xml").toFile();
       FileUtils.write(providerConfig, TEST_PROVIDER_CONFIG, StandardCharsets.UTF_8);
 
       File topologyFile = null;

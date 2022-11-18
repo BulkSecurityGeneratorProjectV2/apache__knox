@@ -166,7 +166,7 @@ public class HadoopAuthCookieStoreTest {
   private static File createTestKrb5LoginConfigFile(String filename, String contents) {
     File result = null;
     try {
-      File f = File.createTempFile(filename, ".conf");
+      File f = Files.createTempFile(filename, ".conf").toFile();
       f.deleteOnExit();
       try(OutputStream out = Files.newOutputStream(f.toPath())) {
         out.write(contents.getBytes(StandardCharsets.UTF_8));

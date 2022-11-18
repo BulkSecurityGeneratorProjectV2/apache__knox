@@ -25,6 +25,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -272,7 +273,7 @@ public class AmbariDynamicServiceURLCreatorTest {
 
     @Test
     public void testOozieURLFromInternalMappingWithExternalOverrides() throws Exception {
-        File tmpFile = File.createTempFile("knox-discovery-external-url-mapping", ".xml");
+        File tmpFile = Files.createTempFile("knox-discovery-external-url-mapping", ".xml").toFile();
         System.setProperty(AmbariDynamicServiceURLCreator.MAPPING_CONFIG_OVERRIDE_PROPERTY, tmpFile.getAbsolutePath());
         try {
             FileUtils.writeStringToFile(tmpFile, OOZIE_OVERRIDE_MAPPING_FILE_CONTENTS, StandardCharsets.UTF_8);
@@ -1187,7 +1188,7 @@ public class AmbariDynamicServiceURLCreatorTest {
 
     @Test
     public void testExtensionServiceURLFromOverride() throws Exception {
-        File tmpFile = File.createTempFile("knox-discovery-url-mapping-extension", ".xml");
+        File tmpFile = Files.createTempFile("knox-discovery-url-mapping-extension", ".xml").toFile();
         System.setProperty(AmbariDynamicServiceURLCreator.MAPPING_CONFIG_OVERRIDE_PROPERTY, tmpFile.getAbsolutePath());
         try {
             FileUtils.writeStringToFile(tmpFile, CUSTOM_AUGMENT_MAPPING_FILE_CONTENTS, StandardCharsets.UTF_8);

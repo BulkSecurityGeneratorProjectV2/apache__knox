@@ -207,7 +207,7 @@ public class AmbariServiceDiscoveryTest {
         // Create component config mapping override
         Properties compConfOverrideProps = new Properties();
         compConfOverrideProps.setProperty("DISCOVERY_TEST", "test-site");
-        File compConfOverrides = File.createTempFile(getClass().getName()+"component-conf-overrides", ".properties");
+        File compConfOverrides = Files.createTempFile(getClass().getName() + "component-conf-overrides", ".properties").toFile();
         compConfOverrideProps.store(Files.newOutputStream(compConfOverrides.toPath()), "Test Config Overrides");
         System.setProperty(AmbariServiceDiscovery.COMPONENT_CONFIG_MAPPING_SYSTEM_PROPERTY,
                            compConfOverrides.getAbsolutePath());
@@ -227,7 +227,7 @@ public class AmbariServiceDiscoveryTest {
                 "  </service>\n" +
                 "</service-discovery-url-mappings>\n";
 
-        File urlMappingOverrides = File.createTempFile(getClass().getName()+"_url-overrides", ".xml");
+        File urlMappingOverrides = Files.createTempFile(getClass().getName() + "_url-overrides", ".xml").toFile();
         FileUtils.writeStringToFile(urlMappingOverrides,
                                     URL_MAPPING_OVERRIDES,
                                     StandardCharsets.UTF_8);

@@ -27,6 +27,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -96,7 +97,7 @@ public class RemoteConfigurationRegistryClientServiceSecureTest extends RemoteCo
             registryConfigProps.put("credentialAlias", CRED_ALIAS);
             String registryConfigXML =
                 RemoteRegistryConfigTestUtils.createRemoteConfigRegistriesXML(Collections.singleton(registryConfigProps));
-            tmpRegConfigFile = File.createTempFile("myRemoteRegistryConfig", "xml");
+            tmpRegConfigFile = Files.createTempFile("myRemoteRegistryConfig", "xml").toFile();
             FileUtils.writeStringToFile(tmpRegConfigFile, registryConfigXML, StandardCharsets.UTF_8);
 
             System.setProperty("org.apache.knox.gateway.remote.registry.config.file", tmpRegConfigFile.getAbsolutePath());

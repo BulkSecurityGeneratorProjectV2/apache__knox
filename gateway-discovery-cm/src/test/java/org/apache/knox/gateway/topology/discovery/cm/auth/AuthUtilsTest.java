@@ -60,7 +60,7 @@ public class AuthUtilsTest {
   private static File createTestKrb5LoginConfigFile() {
     File result = null;
     try {
-      File f = File.createTempFile("krb5JAASLogin", ".conf");
+      File f = Files.createTempFile("krb5JAASLogin", ".conf").toFile();
       f.deleteOnExit();
       try(OutputStream out = Files.newOutputStream(f.toPath())) {
         out.write(getTestKrb5LoginConf().getBytes(StandardCharsets.UTF_8));

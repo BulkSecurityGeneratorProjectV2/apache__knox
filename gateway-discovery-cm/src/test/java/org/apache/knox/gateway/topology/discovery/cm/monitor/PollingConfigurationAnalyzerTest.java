@@ -37,6 +37,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -291,7 +292,7 @@ public class PollingConfigurationAnalyzerTest {
 
     File descriptor = null;
     try {
-      descriptor = File.createTempFile("test", ".json");
+      descriptor = Files.createTempFile("test", ".json").toFile();
       FileUtils.writeStringToFile(descriptor, descContent, StandardCharsets.UTF_8);
     } catch (IOException e) {
       e.printStackTrace();

@@ -23,6 +23,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +56,7 @@ public class RemoteConfigurationRegistryConfigParserTest {
         config2.put(RemoteRegistryConfigTestUtils.PROPERTY_SECURE, "true");
         config2.put(RemoteRegistryConfigTestUtils.PROPERTY_AUTH_TYPE, "Kerberos");
         config2.put(RemoteRegistryConfigTestUtils.PROPERTY_PRINCIPAL, "knox");
-        File myKeyTab = File.createTempFile("mytest", "keytab");
+        File myKeyTab = Files.createTempFile("mytest", "keytab").toFile();
         config2.put(RemoteRegistryConfigTestUtils.PROPERTY_KEYTAB, myKeyTab.getAbsolutePath());
         config2.put(RemoteRegistryConfigTestUtils.PROPERTY_USE_KEYTAB, "false");
         config2.put(RemoteRegistryConfigTestUtils.PROPERTY_USE_TICKET_CACHE, "true");
@@ -70,7 +71,7 @@ public class RemoteConfigurationRegistryConfigParserTest {
         String configXML =
                     RemoteRegistryConfigTestUtils.createRemoteConfigRegistriesXML(testRegistryConfigurations.values());
 
-        File registryConfigFile = File.createTempFile("remote-registries", "xml");
+        File registryConfigFile = Files.createTempFile("remote-registries", "xml").toFile();
         try {
             FileUtils.writeStringToFile(registryConfigFile, configXML, StandardCharsets.UTF_8);
 
